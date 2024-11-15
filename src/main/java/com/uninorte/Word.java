@@ -23,6 +23,12 @@ public class Word {
         this.next = null;
     }
 
+    public Word(WordType wordType) {
+        this.wordType = wordType;
+        this.next = null;
+        this.root = null;
+    }
+
     public char[] getCharList() {
         return charList;
     }
@@ -68,9 +74,14 @@ public class Word {
         return sb.toString();
     }
 
-    public WordType getWordType() {
+    public WordType getType() {
         return wordType;
     }
+
+    public int getLetterCount(){
+        return charList.length;
+    }
+
 
     public Word getNext(){
         return next;
@@ -78,6 +89,32 @@ public class Word {
 
     public void setNext(Word next){
         this.next = next;
+    }
+
+    public void add(char c) {
+        if (charList == null) {
+            charList = new char[0];
+        }
+        
+        char[] newCharList = new char[charList.length + 1];
+
+        for (int i = 0; i < charList.length; i++) {
+            newCharList[i] = charList[i];
+        }
+
+        newCharList[charList.length] = c;
+        charList = newCharList;
+
+        BaseCharacter baseCharacter = new BaseCharacter(c);
+        if (root == null) {
+            root = baseCharacter; 
+        } else {
+            BaseCharacter aux = root;
+            while (aux.getNext() != null) {
+                aux = aux.getNext(); 
+            }
+            aux.setNext(baseCharacter); 
+        }
     }
 
 }

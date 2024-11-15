@@ -17,10 +17,10 @@ public class Sentence {
             if(word.isValid() == false){
                 return false;
             }
-            if(word.getWordType() == WordType.VERB){
+            if(word.getType() == WordType.VERB){
                 contadorVerbos++;
             }
-            if(word.getWordType() == WordType.SUBJECT){
+            if(word.getType() == WordType.SUBJECT){
                 contadorSubjects++;
             }
         }
